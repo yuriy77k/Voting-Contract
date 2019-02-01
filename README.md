@@ -12,7 +12,7 @@ To create a proposal, anybody can send a set amount of CLO to functions `createP
 
 After vote finishing user should call `refundPayment` to refund payment and update proposal voting results.
 
-Ballot contract could be destroyed when one year passed after the end of a vote.
+Ballot contract could be destroyed (to clear blockchain from unused data) when one year passed after the end of a vote.
 
 For convinient monitoring contrat generate two events:
 
