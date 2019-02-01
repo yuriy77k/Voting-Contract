@@ -12,3 +12,16 @@ To create a proposal, anybody can send a set amount of CLO to functions `createP
 
 After vote finishing user should call `refundPayment` to refund payment and update proposal voting results.
 
+Ballot contract could be destroyed when one year passed after the end of a vote.
+
+For convinient monitoring contrat generate two events:
+
+`CreateProposal` with fields:
+* address of Ballot contract for proposal.
+* name of proposal.
+* url with proposal and options description. 
+
+`WinProposal` with those and additional fields:
+* winnerOption - the option with the most votes. 
+* winnerPercent - percentage of votes for the winning option of all those who voted.
+* quorumPercent - percentage of total numbers of voters took who took part in voting (is a quorum or isn't).
