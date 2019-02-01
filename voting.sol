@@ -52,9 +52,14 @@ contract Voting is GlobalConstants {
     // Allow to anybody destroy Ballot contract to free blockchain memory when one year passed after finish voting.
     bool constant DESTRUCTABLE = true;
   
+    // ballot - address of Ballot contract for proposal.
+    // name - name of proposal.
+    // url - url with proposal and options description. 
     event CreateProposal(address indexed ballot, string name, string url);
-    // Percent of total numbers of voters took part in voting. Need to know is a quorum or isn't.
-    event WinProposal(address indexed ballot, string name, string url, uint8 winnerOption, uint8 percentTotalVoters);
+    // winnerOption - the option with the most votes. 
+    // winnerPercent - percentage of votes for the winning option of all those who voted.
+    // quorumPercent - percentage of total numbers of voters took who took part in voting (is a quorum or isn't).
+    event WinProposal(address indexed ballot, string name, string url, uint8 winnerOption, uint8 winnerPercent, uint8 quorumPercent);
 
     // The only function which requires to be an owner.
     function changeThreshold (uint _proposalThreshold) public {
@@ -147,7 +152,7 @@ contract Voting is GlobalConstants {
         delete payments[_ballot];
         _payer.transfer(_amount);
 
-        emit WinProposal(_ballot,proposals[_ballot].name,proposals[_ballot].url,uint8(_winner),uint8(_percent));
+        emit WinProposal(_ballot,proposals[_ballot].name,proposals[_ballot].url,uint8(_winner), uint8(_max*100/_sum), uint8(_percent));
     }
 
     // Vote on selected ballot.
