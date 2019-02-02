@@ -20,8 +20,10 @@ For convinient monitoring contrat generate two events:
 * address of Ballot contract for proposal.
 * name of proposal.
 * url with proposal and options description. 
+* start and end time of vote.
 
-`WinProposal` with those and additional fields:
+`WinProposal` with fields:
+* address, name and url - as above.
 * winnerOption - the option with the most votes. 
 * winnerPercent - percentage of votes for the winning option of all those who voted.
 * quorumPercent - percentage of total numbers of voters took who took part in voting (is a quorum or isn't).
