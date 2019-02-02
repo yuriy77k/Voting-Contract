@@ -55,7 +55,7 @@ contract Voting is GlobalConstants {
     // ballot - address of Ballot contract for proposal.
     // name - name of proposal.
     // url - url with proposal and options description. 
-    event CreateProposal(address indexed ballot, string name, string url);
+    event CreateProposal(address indexed ballot, string name, string url, uint indexed startTime, uint indexed endTime);
     // winnerOption - the option with the most votes. 
     // winnerPercent - percentage of votes for the winning option of all those who voted.
     // quorumPercent - percentage of total numbers of voters took who took part in voting (is a quorum or isn't).
@@ -120,7 +120,7 @@ contract Voting is GlobalConstants {
         payments[_ballot].payer = msg.sender;
         payments[_ballot].amount = msg.value;
 
-        emit CreateProposal(_ballot,_name,_url);
+        emit CreateProposal(_ballot,_name,_url,_startTime,p.endTime);
     }
     
     // After vote finishing refund payment to creator and update proposal voting results.
